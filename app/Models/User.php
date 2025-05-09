@@ -46,9 +46,13 @@ class User extends Authenticatable
         ];
     }
 
-
     public function profile()
     {
         return $this->hasOne(MahasiswaProfile::class, "user_id", "id");
+    }
+
+    public function nilaiSurveys()
+    {
+        return $this->hasMany(UserNilaiSurvey::class);
     }
 }

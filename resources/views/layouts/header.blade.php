@@ -20,10 +20,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('/') }}assets/js/require.min.js"></script>
     <script>
         requirejs.config({
-            baseUrl: '.'
+            baseUrl: '/'
         });
     </script>
     <!-- Dashboard Core -->
@@ -49,8 +53,8 @@
                 <div class="container">
                     <div class="d-flex">
                         <a class="header-brand" href="{{ asset('/') }}index.html">
-                            <img src="{{ asset('/') }}demo/brand/tabler.svg" class="header-brand-img"
-                                alt="tabler logo">
+                            <img src="{{ asset('/') }}logo.png" class="header-brand-img" alt="tabler logo">
+                            RSPPN
                         </a>
                         <div class="d-flex order-lg-2 ml-auto">
                             <div class="dropdown d-none d-md-flex">
@@ -58,17 +62,17 @@
                             <div class="dropdown">
                                 <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                                     <span class="avatar"
-                                        style="background-image: url({{ asset('/') }}demo/faces/female/25.jpg)"></span>
+                                        style="background-image: url({{ asset('/') }}default-ava.jpg)"></span>
                                     <span class="ml-2 d-none d-lg-block">
-                                        <span class="text-default">Jane Pearson</span>
-                                        <small class="text-muted d-block mt-1">Administrator</small>
+                                        <span class="text-default">{{ auth()->user()->name }}</span>
+                                        <small class="text-muted d-block mt-1">{{ auth()->user()->role }}</small>
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                     <a class="dropdown-item" href="#">
                                         <i class="dropdown-icon fe fe-user"></i> Profile
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="/logout">
                                         <i class="dropdown-icon fe fe-log-out"></i> Sign out
                                     </a>
                                 </div>
@@ -87,41 +91,13 @@
                         <div class="col-lg-3 ml-auto">
 
                         </div>
-                        <div class="col-lg order-lg-first">
-                            <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                                <li class="nav-item">
-                                    <a href="/" class="nav-link active"><i class="fe fe-home"></i> Beranda</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i
-                                            class="fe fe-box"></i> Data</a>
-
-                                    <div class="dropdown-menu dropdown-menu-arrow">
-                                        <a href="#" class="dropdown-item">Mahasiswa</a>
-                                        <a href="#" class="dropdown-item">Materi</a>
-                                        <a href="#" class="dropdown-item">Tugas</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i
-                                            class="fe fe-calendar"></i> Survey</a>
-                                    <div class="dropdown-menu dropdown-menu-arrow">
-                                        <a href="#" class="dropdown-item">Data Survey</a>
-                                        <a href="#" class="dropdown-item">Isi Survey</a>
-                                        <a href="#" class="dropdown-item">Hasil Survey</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i
-                                            class="fe fe-file"></i> Tugas</a>
-                                    <div class="dropdown-menu dropdown-menu-arrow">
-                                        <a href="#" class="dropdown-item">Tugas Belum Dikerjakan</a>
-                                        <a href="#" class="dropdown-item">Tugas Selesai</a>
-                                        <a href="#" class="dropdown-item">Nilai Tugas</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        @auth
+                            @if (auth()->user()->role == 'admin')
+                                @include('layouts.navbar-admin')
+                            @else
+                                @include('layouts.navbar-mahasiswa')
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>

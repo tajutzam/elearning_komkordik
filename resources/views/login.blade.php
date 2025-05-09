@@ -48,22 +48,23 @@
                 <div class="row">
                     <div class="col col-login mx-auto">
                         <div class="text-center mb-6">
-                            <img src="{{ asset('/') }}demo/brand/tabler.svg" class="h-6" alt="">
+                            <img src="{{ asset('/') }}logo.png" style="height: 100px" alt="">
                         </div>
-                        <form class="card" action="" method="post">
+                        <form class="card" action="{{ route('login.post', ['id' => 1]) }}" method="post">
+                            @csrf
                             <div class="card-body p-6">
                                 <div class="card-title">Masuk Elearning | KOMKORDIK</div>
                                 <div class="form-group">
                                     <label class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                    <input name="email" type="email" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">
                                         Password
                                     </label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <input name="password" type="password" class="form-control"
+                                        id="exampleInputPassword1" placeholder="Password">
                                 </div>
                                 <div class="form-group">
                                     <label class="custom-control custom-checkbox">

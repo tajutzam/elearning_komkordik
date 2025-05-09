@@ -15,7 +15,7 @@
                             6%
                             <i class="fe fe-chevron-up"></i>
                         </div>
-                        <div class="h1 m-0">43</div>
+                        <div class="h1 m-0">{{ $mahasiswa }}</div>
                         <div class="text-muted mb-4">Mahasiswa</div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                             -3%
                             <i class="fe fe-chevron-down"></i>
                         </div>
-                        <div class="h1 m-0">17</div>
+                        <div class="h1 m-0">{{ $quizes }}</div>
                         <div class="text-muted mb-4">Quiz</div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                             9%
                             <i class="fe fe-chevron-up"></i>
                         </div>
-                        <div class="h1 m-0">7</div>
+                        <div class="h1 m-0">{{ $survey }}</div>
                         <div class="text-muted mb-4">Survey</div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                             3%
                             <i class="fe fe-chevron-up"></i>
                         </div>
-                        <div class="h1 m-0">27.3K</div>
+                        <div class="h1 m-0">{{ $admin }}</div>
                         <div class="text-muted mb-4">Admin</div>
                     </div>
                 </div>

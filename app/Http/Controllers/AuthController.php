@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MahasiswaProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -17,8 +18,29 @@ class AuthController extends Controller
     }
 
 
-    public function loginPost(Request $request){
+    public function loginPost(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            session()->flash('success', 'Login berhasil!');
+
+            $user = Auth::user();
+
+            if ($user->role == 'mahasiswa') {
+                return redirect()->intended('/home');
+            }
+            return redirect()->intended('/dashboard');
+        }
+
+        session()->flash('error', 'Email atau password salah.');
+
+        return back()->withInput();
     }
 
     public function register()
@@ -59,5 +81,12 @@ class AuthController extends Controller
         );
 
         return redirect()->route('login')->with('success', 'berhasil daftar!');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('login')->with('success', 'berhasil logout!');
     }
 }
