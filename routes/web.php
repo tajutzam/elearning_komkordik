@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Mahasiswa\HomeController;
 use App\Http\Controllers\Mahasiswa\MateriController as MahasiswaMateriController;
+use App\Http\Controllers\Mahasiswa\QuizController as MahasiswaQuizController;
 use App\Http\Controllers\Mahasiswa\SurveyController as MahasiswaSurveyController;
 use App\Http\Controllers\Mahasiswa\TugasController;
 use App\Http\Controllers\MahasiswaController;
@@ -40,6 +41,18 @@ Route::middleware('auth')->group(function () {
         Route::post("tugas-belum-dikerjakan", [TugasController::class, "submitTugasBelumDikerjakan"])->name('submissions.store');
 
         Route::get("tugas-selesai", [TugasController::class, "tugasSelesai"]);
+
+
+        // quiz
+
+        Route::get("quiz-belum-dikerjakan", [MahasiswaQuizController::class, "belumDikerjakan"]);
+        Route::get("quiz-belum-dikerjakan/{id}/form", [MahasiswaQuizController::class, "belumDikerjakanForm"])->name('quiz.form');
+        Route::post("quiz-belum-dikerjakan/{id}/form", [MahasiswaQuizController::class, "belumDikerjakanStore"])->name('quiz.submit');
+
+
+        Route::get("quiz-selesai", [MahasiswaQuizController::class, "dikerjakan"]);
+        Route::get("quiz-selesai/{id}", [MahasiswaQuizController::class, "showResult"])->name('quiz.show-result');
+        Route::delete('quiz-selesai/{id}/delete', [MahasiswaQuizController::class, 'deleteAnswer'])->name('quiz.selesai.delete');
     });
 });
 
@@ -74,11 +87,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get("quiz/{id}/pertanyaan", [QuizController::class, "showPertanyaan"])->name('quiz.pertanyaan');
 
+    Route::post('quiz/pertanyaan/create', [QuizController::class, 'addQuestions'])->name('quiz.pertanyaan.store');
 
 
 
+    Route::delete('quiz/pertanyaan/{id}/destroy', [QuizController::class, 'destroyQuestion'])->name('quiz.pertanyaan.destroy');
 
 
+    Route::get('quiz/response/{id}', [QuizController::class, "showResponse"])->name('quiz.show-response');
 });
 Route::get('/login', [AuthController::class, "login"])->name('login');
 Route::post('/login', [AuthController::class, "loginPost"])->name('login.post');

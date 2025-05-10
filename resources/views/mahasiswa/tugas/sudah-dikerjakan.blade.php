@@ -40,18 +40,19 @@
                                             Yang Kamu Submit</a>
                                     </td>
                                     <td>
-                                        @if (isset($item->submissions->first->grade))
+
+                                        @if (isset($item->submissions->first()->grade))
                                             <span class="badge bg-indigo">
-                                                {{ $item->submissions->first->grade }}
+                                                {{ $item->submissions->first()->grade }}
                                             </span>
                                         @else
                                             <span class="badge bg-danger">Belum Dinilai</span>
                                         @endif
                                     </td>
                                     <td>
-                                        @if (isset($item->submissions->first->feedback))
+                                        @if (isset($item->submissions->first()->feedback))
                                             <span class="badge bg-indigo">
-                                                {{ $item->submissions->first->feedback }}
+                                                {{ $item->submissions->first()->feedback }}
                                             </span>
                                         @else
                                             <span class="badge bg-danger">Tidak ada feedback</span>

@@ -31,7 +31,7 @@ class TugasController extends Controller
 
         $assignments = Assignment::whereHas('submissions', function ($query) use ($userId) {
             $query->where('user_id', $userId);
-        })->paginate();
+        })->paginate(5);
 
         return view('mahasiswa.tugas.sudah-dikerjakan' , compact('assignments'));
 

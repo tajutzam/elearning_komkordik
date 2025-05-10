@@ -10,4 +10,20 @@ class Quiz extends Model
 
     protected $guarded = [];
 
+
+    public function questions()
+    {
+        return $this->hasMany(QuizQuestion::class, 'quiz_id');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(QuizAnswer::class, "quiz_id");
+    }
+
+
+    public function quizResults()
+    {
+        return $this->hasMany(QuizResult::class);
+    }
 }

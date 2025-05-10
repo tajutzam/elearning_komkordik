@@ -37,9 +37,28 @@
             </div>
         </li>
         <li class="nav-item">
-            <a href="{{ url('/dashboard-user/materi') }}" class="nav-link {{ request()->is('dashboard-user/materi') ? 'active' : '' }}">
+            <a href="{{ url('/dashboard-user/materi') }}"
+                class="nav-link {{ request()->is('dashboard-user/materi') ? 'active' : '' }}">
                 <i class="fe fe-book-open"></i> Materi
             </a>
         </li>
+
+        <li class="nav-item dropdown">
+            <a href="javascript:void(0)"
+                class="nav-link
+                {{ request()->is('dashboard-user/quiz-belum-dikerjakan') || request()->is('dashboard-user/quiz-selesai') || request()->is('dashboard-user/nilai-tugas') ? 'active' : '' }}"
+                data-toggle="dropdown">
+                <i class="fe fe-file"></i> Quiz
+            </a>
+            <div class="dropdown-menu dropdown-menu-arrow">
+                <a href="{{ url('/dashboard-user/quiz-belum-dikerjakan') }}"
+                    class="dropdown-item {{ request()->is('dashboard-user/quiz-belum-dikerjakan') ? 'active' : '' }}">Quiz
+                    Belum Dikerjakan</a>
+                <a href="{{ url('/dashboard-user/quiz-selesai') }}"
+                    class="dropdown-item {{ request()->is('dashboard-user/quiz-selesai') ? 'active' : '' }}">Quiz
+                    Selesai</a>
+            </div>
+        </li>
+
     </ul>
 </div>

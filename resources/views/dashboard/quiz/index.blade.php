@@ -41,7 +41,8 @@
                                                 class="btn btn-info btn-sm">Edit</a>
                                             <a href="{{ route('quiz.pertanyaan', ['id' => $item->id]) }}"
                                                 class="btn btn-warning btn-sm">Pertanyaan</a>
-                                            <a class="btn btn-success btn-sm">Respon</a>
+                                            <a href="{{ route('quiz.show-response', ['id' => $item->id]) }}"
+                                                class="btn btn-success btn-sm">Respon</a>
 
                                             <form action="{{ route('survey.destroy', $item->id) }}" method="POST">
                                                 @csrf

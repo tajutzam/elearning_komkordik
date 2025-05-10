@@ -78,7 +78,7 @@
                             mahasiswa kesehatan.
                         </p>
                         <div class="d-flex">
-                            <a href="/home" class="btn-get-started">Mulai Sekarang</a>
+                            <a href="/login" class="btn-get-started">Mulai Sekarang</a>
                         </div>
                     </div>
                 </div>

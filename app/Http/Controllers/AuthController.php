@@ -34,8 +34,9 @@ class AuthController extends Controller
 
             if ($user->role == 'mahasiswa') {
                 return redirect()->intended('/home');
+            } else {
+                return redirect()->intended('/dashboard');
             }
-            return redirect()->intended('/dashboard');
         }
 
         session()->flash('error', 'Email atau password salah.');
@@ -89,4 +90,7 @@ class AuthController extends Controller
 
         return redirect()->route('login')->with('success', 'berhasil logout!');
     }
+
+
+
 }

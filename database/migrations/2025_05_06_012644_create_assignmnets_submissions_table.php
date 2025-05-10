@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('assignmnets_submissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assingment_id')->constrained('assignments')->onDelete('cascade');
+            $table->foreignId('assignment_id')->constrained('assignments')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // mahasiswa yang mengumpulkan
             $table->string('file_path')->nullable();
             $table->string('description');
